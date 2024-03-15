@@ -260,7 +260,7 @@ class RegisterView extends StatelessWidget {
                     ),
                     TextButton(
                       onPressed: () {
-                        Navigator.pushNamed(context, LoginView.routeName);
+                        Navigator.pushReplacementNamed(context, LoginView.routeName);
                       },
                       child: Text(
                         "Sign In",

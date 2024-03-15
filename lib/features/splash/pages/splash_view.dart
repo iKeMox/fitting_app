@@ -30,15 +30,9 @@ class _SplashViewState extends State<SplashView> {
     var theme = Theme.of(context);
 
     return Scaffold(
-      backgroundColor: theme.primaryColor,
+      backgroundColor: Color(0xffdebc8a),
       body: Center(
-        child: Text(
-          "Fitting App",
-          style: TextStyle(
-            fontSize: 50,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
+        child: Image.asset("assets/images/logo.png")
       ),
     );
   }

@@ -6,7 +6,7 @@ import 'features/home/pages/home_view.dart';
 import 'features/settings/pages/settings_view.dart';
 
 class SettingsProvider extends ChangeNotifier{
-  ThemeMode currentTheme = ThemeMode.dark;
+  ThemeMode currentTheme = ThemeMode.light;
   int currentIndex = 0;
   List<Widget> screens = [
     HomeView(),

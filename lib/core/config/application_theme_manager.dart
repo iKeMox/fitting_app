@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 class ApplicationThemeManager {
   static const Color primaryColor = Color(0xff6f4f38);
   static ThemeData lightTheme = ThemeData(
+    primaryColor: primaryColor,
     textTheme: TextTheme(
       titleLarge: TextStyle(
         fontFamily: "Poppins",
