@@ -1,6 +1,9 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:graduation_project_fitting_app/core/widgets/custom_text_field.dart';
+import 'package:graduation_project_fitting_app/core/widgets/product_card.dart';
 import 'package:graduation_project_fitting_app/features/home/widgets/categories_widget.dart';
+import 'package:iconsax/iconsax.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
@@ -11,24 +14,36 @@ class HomeView extends StatelessWidget {
     var theme = Theme.of(context);
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 50.0, horizontal: 10),
+        padding: const EdgeInsets.only(top: 50.0, right: 10, left: 10),
         child: SizedBox(
           height: mediaQuery.height,
           width: mediaQuery.width,
           child: SingleChildScrollView(
             child: Column(
               children: [
-                Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 8.0),
-                      child: Text(
-                        "Welcome Back!",
-                        style: theme.textTheme.bodyMedium
-                            ?.copyWith(color: Colors.grey),
+                SizedBox(
+                  width: 350,
+                  height: 40,
+                  child: TextFormField(
+                    decoration: InputDecoration(
+                      contentPadding:
+                          EdgeInsets.symmetric(vertical: 2, horizontal: 8),
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20)),
+                      hintText: "Search",
+                      hintStyle: theme.textTheme.bodyMedium?.copyWith(
+                        color: Colors.grey,
+                        fontWeight: FontWeight.w400,
+                        height: 0,
+                      ),
+                      suffixIcon: IconButton(
+                        icon: Icon(Iconsax.search_normal_14),
+                        onPressed: () {
+
+                        },
                       ),
                     ),
-                  ],
+                  ),
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(
@@ -85,8 +100,9 @@ class HomeView extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     CategoriesWidget(
-                        imageLink: "assets/images/fashion_cat.png",
-                        categoryName: "Fashion",),
+                      imageLink: "assets/images/fashion_cat.png",
+                      categoryName: "Fashion",
+                    ),
                     CategoriesWidget(
                         imageLink: "assets/images/men_cat.png",
                         categoryName: "Men"),
@@ -96,9 +112,50 @@ class HomeView extends StatelessWidget {
                     CategoriesWidget(
                         imageLink: "assets/images/kids_cat.png",
                         categoryName: "Kids"),
-
                   ],
-                )
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                Row(
+                  children: [
+                    Text(
+                      "Popular",
+                      style: theme.textTheme.bodySmall
+                          ?.copyWith(color: Colors.grey.shade700, fontSize: 14),
+                      textAlign: TextAlign.start,
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                Container(
+                  height: 870,
+                  child: GridView(
+                    padding: EdgeInsets.zero,
+                    physics: const NeverScrollableScrollPhysics(),
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      crossAxisSpacing: 10,
+                      mainAxisSpacing: 10,
+                      childAspectRatio: 1,
+                    ),
+                    // scrollDirection: Axis.vertical,
+                    children: [
+                      ProductCard(),
+                      ProductCard(),
+                      ProductCard(),
+                      ProductCard(),
+                      ProductCard(),
+                      ProductCard(),
+                      ProductCard(),
+                      ProductCard(),
+                      ProductCard(),
+                      ProductCard(),
+                    ],
+                  ),
+                ),
               ],
             ),
           ),

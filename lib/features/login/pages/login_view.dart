@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../../core/services/snack_bar_service.dart';
 import '../../../core/widgets/custom_text_field.dart';
 import '../../../layout.dart';
 import '../../../settings_provider.dart';
@@ -200,6 +201,7 @@ class LoginView extends StatelessWidget {
                       onPressed: () {
                         Navigator.pushReplacementNamed(
                             context, RegisterView.routeName);
+
                       },
                       child: Text(
                         "Sign Up",

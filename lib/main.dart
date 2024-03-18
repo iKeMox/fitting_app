@@ -1,5 +1,7 @@
 
 import 'package:flutter/material.dart';
+import 'package:graduation_project_fitting_app/features/categorise/pages/categorise_view.dart';
+import 'package:graduation_project_fitting_app/features/product/pages/product_view.dart';
 import 'package:graduation_project_fitting_app/settings_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -36,7 +38,8 @@ class MyApp extends StatelessWidget {
         LayoutView.routeName: (context) => const LayoutView(),
         LoginView.routeName: (context) => LoginView(),
         RegisterView.routeName: (context) => RegisterView(),
-
+        CategoriseView.routeName: (context) => const CategoriseView(),
+        ProductView.routeName: (context) => const ProductView(),
       },
     );
   }
