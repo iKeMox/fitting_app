@@ -18,10 +18,9 @@ class _ProductCardState extends State<ProductCard> {
     return GestureDetector(
       onTap: () {
         Navigator.pushNamed(context, ProductView.routeName);
-        print("pppppppppppppppppppppppppppppppppppppppppppppp");
       },
       child: Card(
-        elevation: 4,
+        elevation: 8,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(8),
         ),
@@ -29,9 +28,17 @@ class _ProductCardState extends State<ProductCard> {
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(8),
-              child: Image.asset(
-                'assets/images/banner2.jpg',
-                fit: BoxFit.cover,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    height: 120,
+                    child: Image.network(
+                      'https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg',
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ],
               ),
             ),
             Positioned(
@@ -63,11 +70,11 @@ class _ProductCardState extends State<ProductCard> {
               bottom: 0,
               child: Padding(
                 padding:
-                    const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                    const EdgeInsets.symmetric(vertical: 12, horizontal: 10),
                 child: Text(
                     overflow: TextOverflow.ellipsis,
                     'Product Name',
-                    style: theme.textTheme.bodyMedium
+                    style: theme.textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w600, fontSize: 16)
                 ),
               ),
             ),

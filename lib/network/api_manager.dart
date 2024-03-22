@@ -1,15 +1,22 @@
 import 'package:graduation_project_fitting_app/core/config/constants.dart';
+import 'package:graduation_project_fitting_app/models/categories_model.dart';
 import 'package:http/http.dart' as http;
 
 class ApiManager {
 
 
-  fetchDataSources(){
-    Uri.https(
+  static fetchDataCategories(String categoryId) async {
+    var url = Uri.https(
       Constants.baseUrl,
-      "/categories"
+      "/products/categories",
+      {
+        // "category:": categoriesModel.id,
+      }
     );
-    // http.get(url);
+    final response = await http.get(url);
+    if(response.statusCode == 200) {
+      print(response.body);
+    }
   }
 
 }

@@ -1,40 +1,53 @@
 import 'package:flutter/material.dart';
-import 'package:graduation_project_fitting_app/features/categorise/pages/categorise_view.dart';
-import 'package:graduation_project_fitting_app/features/login/pages/login_view.dart';
+import '../../../models/categories_model.dart';
+
+typedef OnCategoryClicked = void Function(CategoriesModel)?;
 
 class CategoriesWidget extends StatelessWidget {
-  String imageLink;
-  String categoryName;
+  final int index;
+  final CategoriesModel categoryModel;
+  final OnCategoryClicked onCategoryClicked;
 
-
-  CategoriesWidget({super.key, required this.imageLink, required this.categoryName});
+  CategoriesWidget({
+    super.key,
+    required this.index,
+    required this.categoryModel,
+    required this.onCategoryClicked,
+  });
 
   @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
-    return GestureDetector(
-      onTap: (){
-        Navigator.pushNamed(context, CategoriseView.routeName);
-        print(categoryName);
+
+    return InkWell(
+      onTap: () {
+        if (onCategoryClicked == null) return;
+        onCategoryClicked!(categoryModel);
+
+        // Navigator.pushNamed(context, CategoriseView.routeName);
       },
-      child: Container(
-        padding: EdgeInsets.all(10),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-          border: Border.all(width: 1,
-          color: Colors.grey.shade700
-          )
-        ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 8.0),
         child: Column(
           children: [
-            CircleAvatar(
-              radius: 30,
-              backgroundColor: Colors.grey.shade700,
-
-              child: Image.asset(imageLink),
+            Container(
+              width: 70,
+              height: 70,
+              clipBehavior: Clip.antiAlias,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+              ),
+              child: Image.asset(
+                categoryModel.image,
+                fit: BoxFit.cover,
+              ),
             ),
-            SizedBox(height: 8),
-            Text(categoryName, style: theme.textTheme.bodySmall?.copyWith(color: Colors.grey.shade700))
+            const SizedBox(
+              height: 4,
+            ),
+            Text(categoryModel.title,
+                style: theme.textTheme.bodySmall?.copyWith(
+                    color: Colors.grey.shade700, fontWeight: FontWeight.w400))
           ],
         ),
       ),

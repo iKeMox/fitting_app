@@ -1,19 +1,58 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:graduation_project_fitting_app/core/widgets/custom_text_field.dart';
 import 'package:graduation_project_fitting_app/core/widgets/product_card.dart';
+import 'package:graduation_project_fitting_app/features/categorise/pages/men_category.dart';
+import 'package:graduation_project_fitting_app/features/categorise/pages/shoes_category.dart';
 import 'package:graduation_project_fitting_app/features/home/widgets/categories_widget.dart';
+import 'package:graduation_project_fitting_app/models/categories_model.dart';
 import 'package:iconsax/iconsax.dart';
 
-class HomeView extends StatelessWidget {
+import '../../categorise/pages/jewelry.dart';
+import '../../categorise/pages/women_category.dart';
+
+class HomeView extends StatefulWidget {
+
   const HomeView({super.key});
 
   @override
+  State<HomeView> createState() => _HomeViewState();
+}
+
+class _HomeViewState extends State<HomeView> {
+  @override
   Widget build(BuildContext context) {
-    var mediaQuery = MediaQuery.of(context).size;
+    final List<CategoriesModel> categoriesList = [
+      CategoriesModel(
+        id: "men's clothing",
+        title: 'Men',
+        image: 'assets/images/men_cat.jpg',
+        onClick: onCategoryClicked
+      ),
+      CategoriesModel(
+        id: "women's clothing",
+        title: 'Women',
+        image: 'assets/images/women_cat.jpg',
+          onClick: onCategoryClicked
+      ),
+      CategoriesModel(
+        id: "electronics",
+        title: 'Shoes',
+        image: 'assets/images/shoes_cat.jpg',
+          onClick: onCategoryClicked
+      ),
+      CategoriesModel(
+        id: "jewelery",
+        title: 'Jewelry',
+        image: 'assets/images/jewelry_cat.jpg',
+          onClick: onCategoryClicked
+      ),
+    ];
+    var mediaQuery = MediaQuery
+        .of(context)
+        .size;
     var theme = Theme.of(context);
     return Scaffold(
-      body: Padding(
+      body:Padding(
         padding: const EdgeInsets.only(top: 50.0, right: 10, left: 10),
         child: SizedBox(
           height: mediaQuery.height,
@@ -27,7 +66,7 @@ class HomeView extends StatelessWidget {
                   child: TextFormField(
                     decoration: InputDecoration(
                       contentPadding:
-                          EdgeInsets.symmetric(vertical: 2, horizontal: 8),
+                      const EdgeInsets.symmetric(vertical: 2, horizontal: 14),
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(20)),
                       hintText: "Search",
@@ -37,10 +76,8 @@ class HomeView extends StatelessWidget {
                         height: 0,
                       ),
                       suffixIcon: IconButton(
-                        icon: Icon(Iconsax.search_normal_14),
-                        onPressed: () {
-
-                        },
+                        icon: const Icon(Iconsax.search_normal_14),
+                        onPressed: () {},
                       ),
                     ),
                   ),
@@ -52,7 +89,7 @@ class HomeView extends StatelessWidget {
                   child: GestureDetector(
                     onTap: () {},
                     child: Container(
-                      padding: EdgeInsets.all(10),
+                      padding: const EdgeInsets.all(10),
                       decoration: BoxDecoration(
                           color: Colors.black,
                           borderRadius: BorderRadius.circular(20)),
@@ -96,27 +133,35 @@ class HomeView extends StatelessWidget {
                     ),
                   ],
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    CategoriesWidget(
-                      imageLink: "assets/images/fashion_cat.png",
-                      categoryName: "Fashion",
-                    ),
-                    CategoriesWidget(
-                        imageLink: "assets/images/men_cat.png",
-                        categoryName: "Men"),
-                    CategoriesWidget(
-                        imageLink: "assets/images/women_cat.png",
-                        categoryName: "Women"),
-                    CategoriesWidget(
-                        imageLink: "assets/images/kids_cat.png",
-                        categoryName: "Kids"),
-                  ],
+                // NavigationBar(destinations: ),
+
+                SingleChildScrollView(
+                  padding: EdgeInsets.zero,
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    children: [
+                      SizedBox(height: 110, width: 410,
+                        child: GridView.builder(
+                          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 1,
+                            crossAxisSpacing: 0,
+                            mainAxisSpacing: 6,
+                            childAspectRatio: 1.2,
+                          ),
+                          scrollDirection: Axis.horizontal,
+                          physics: const PageScrollPhysics(),
+                          itemBuilder: (context, index) =>
+                              CategoriesWidget(index: index,
+                                categoryModel: categoriesList[index],
+                              onCategoryClicked: onCategoryClicked,),
+                          itemCount: 4,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-                const SizedBox(
-                  height: 20,
-                ),
+
+
                 Row(
                   children: [
                     Text(
@@ -130,37 +175,40 @@ class HomeView extends StatelessWidget {
                 const SizedBox(
                   height: 10,
                 ),
-                Container(
+                SizedBox(
                   height: 870,
-                  child: GridView(
+                  child: GridView.builder(
                     padding: EdgeInsets.zero,
                     physics: const NeverScrollableScrollPhysics(),
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
                       crossAxisSpacing: 10,
                       mainAxisSpacing: 10,
                       childAspectRatio: 1,
                     ),
                     // scrollDirection: Axis.vertical,
-                    children: [
-                      ProductCard(),
-                      ProductCard(),
-                      ProductCard(),
-                      ProductCard(),
-                      ProductCard(),
-                      ProductCard(),
-                      ProductCard(),
-                      ProductCard(),
-                      ProductCard(),
-                      ProductCard(),
-                    ],
+                    itemBuilder: (context, index){
+                      return const ProductCard();
+                    },
+                    itemCount: 10,
                   ),
                 ),
               ],
             ),
           ),
         ),
-      ),
+      )
     );
+  }
+
+  CategoriesModel? selectCategory;
+
+  void onCategoryClicked(CategoriesModel categoryModel) {
+    if(categoryModel.title == "Men") Navigator.pushNamed(context, MenCategory.routeName);
+    if(categoryModel.title == "Women") Navigator.pushNamed(context, WomenCategory.routeName);
+    if(categoryModel.title == "Shoes") Navigator.pushNamed(context, ShoesCategory.routeName);
+    if(categoryModel.title == "Jewelry") Navigator.pushNamed(context, JewelryCategory.routeName);
+
+    setState(() {});
   }
 }
