@@ -4,7 +4,7 @@ class ApplicationThemeManager {
   static const Color primaryColor = Color(0xff6f4f38);
   static ThemeData lightTheme = ThemeData(
     primaryColor: primaryColor,
-    textTheme: TextTheme(
+    textTheme: const TextTheme(
       titleLarge: TextStyle(
         fontFamily: "Poppins",
         fontSize: 22,
@@ -36,7 +36,7 @@ class ApplicationThemeManager {
         color: Colors.black,
       ),
     ),
-    bottomNavigationBarTheme: BottomNavigationBarThemeData(
+    bottomNavigationBarTheme: const BottomNavigationBarThemeData(
       type: BottomNavigationBarType.fixed,
       backgroundColor: Colors.transparent,
       elevation: 0,
@@ -57,7 +57,7 @@ class ApplicationThemeManager {
 
   static ThemeData darkTheme = ThemeData(
     primaryColor: primaryColor,
-    textTheme: TextTheme(
+    textTheme: const TextTheme(
       titleLarge: TextStyle(
         fontFamily: "Poppins",
         fontSize: 22,

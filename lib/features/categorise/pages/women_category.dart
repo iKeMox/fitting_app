@@ -14,8 +14,6 @@ class WomenCategory extends StatefulWidget {
 class _WomenCategoryState extends State<WomenCategory> {
   @override
   Widget build(BuildContext context) {
-    CategoriesModel? categoryModel;
-    ApiManager.fetchDataCategories(categoryModel!.id);
     return Scaffold(
       body: Center(
         child: Text('Women Category'),

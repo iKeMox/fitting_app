@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:graduation_project_fitting_app/features/login/pages/login_view.dart';
 import 'package:graduation_project_fitting_app/features/product/pages/product_view.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:like_button/like_button.dart';
@@ -27,14 +26,15 @@ class _ProductCardState extends State<ProductCard> {
         child: Stack(
           children: [
             ClipRRect(
-              borderRadius: BorderRadius.circular(8),
+              borderRadius: const BorderRadius.only(topLeft: Radius.circular(8), topRight: Radius.circular(8)),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Container(
+                  SizedBox(
                     height: 120,
-                    child: Image.network(
-                      'https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg',
+                    width: 157,
+                    child: Image.asset(
+                      'assets/images/banner2.jpg',
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -48,20 +48,22 @@ class _ProductCardState extends State<ProductCard> {
                 height: 24,
                 child: LikeButton(
                   size: 23,
-                  animationDuration: Duration(milliseconds: 500),
+                  animationDuration: const Duration(milliseconds: 500),
                   likeBuilder: (isLiked) {
-                    if (isLiked)
-                      return Icon(
+                    if (isLiked) {
+                      return const Icon(
                         Iconsax.heart5,
                         size: 24,
                         color: Colors.red,
                       );
-                    if (!isLiked)
-                      return Icon(
+                    }
+                    if (!isLiked) {
+                      return const Icon(
                         Iconsax.heart5,
                         size: 24,
                         color: Colors.white,
                       );
+                    }
                   },
                 ),
               ),
