@@ -26,14 +26,14 @@ class _LayoutViewState extends State<LayoutView> {
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 5),
         child: Container(
-          padding: EdgeInsets.all(10),
+          padding: const EdgeInsets.all(10),
           decoration: BoxDecoration(
             color: Colors.black,
             borderRadius: BorderRadius.circular(30),
           ),
           child: GNav(
             gap: 8,
-            padding: EdgeInsets.symmetric(horizontal: 10,vertical: 10),
+            padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 10),
             backgroundColor: Colors.black,
             color: Colors.white,
             activeColor: Colors.white,
@@ -48,20 +48,6 @@ class _LayoutViewState extends State<LayoutView> {
           ),
         ),
       ),
-
-
-
-
-      // bottomNavigationBar: BottomNavigationBar(
-      //
-      //   currentIndex: vm.currentIndex,
-      //   onTap: vm.changeIndex,
-      //   items: [
-      //     BottomNavigationBarItem(icon: Icon(Iconsax.home), label: "Home"),
-      //     BottomNavigationBarItem(icon: Icon(Iconsax.user), label: "Fitting Room"),
-      //     BottomNavigationBarItem(icon: Icon(Iconsax.setting), label: "Settings"),
-      //   ],
-      // ),
     );
   }
 }

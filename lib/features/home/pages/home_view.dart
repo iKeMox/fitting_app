@@ -6,8 +6,6 @@ import 'package:graduation_project_fitting_app/features/categorise/pages/men_cat
 import 'package:graduation_project_fitting_app/features/categorise/pages/shoes_category.dart';
 import 'package:graduation_project_fitting_app/features/home/widgets/categories_widget.dart';
 import 'package:graduation_project_fitting_app/models/categories_model.dart';
-import 'package:iconsax/iconsax.dart';
-
 import '../../categorise/pages/jewelry.dart';
 import '../../categorise/pages/women_category.dart';
 
@@ -47,7 +45,6 @@ class _HomeViewState extends State<HomeView> {
     ];
     var mediaQuery = MediaQuery.of(context).size;
     var theme = Theme.of(context);
-    bool folded = true;
     return Scaffold(
         body: Padding(
       padding: const EdgeInsets.only(top: 30.0, right: 10, left: 10),
@@ -75,10 +72,12 @@ class _HomeViewState extends State<HomeView> {
                           searchController.clear();
                         });
                       },
-                      prefixIcon: Icon(Icons.search),
-                      suffixIcon: Icon(Icons.close_outlined),
+                      prefixIcon: const Icon(Icons.search),
+                      suffixIcon: const Icon(Icons.close_outlined),
 
-                      onSubmitted: (String) {},
+                      onSubmitted: (String value) {
+
+                      },
                     ),
                   ],
                 ),
@@ -210,14 +209,10 @@ class _HomeViewState extends State<HomeView> {
   CategoriesModel? selectCategory;
 
   void onCategoryClicked(CategoriesModel categoryModel) {
-    if (categoryModel.title == "Men")
-      Navigator.pushNamed(context, MenCategory.routeName);
-    if (categoryModel.title == "Women")
-      Navigator.pushNamed(context, WomenCategory.routeName);
-    if (categoryModel.title == "Shoes")
-      Navigator.pushNamed(context, ShoesCategory.routeName);
-    if (categoryModel.title == "Jewelry")
-      Navigator.pushNamed(context, JewelryCategory.routeName);
+    if (categoryModel.title == "Men") Navigator.pushNamed(context, MenCategory.routeName);
+    if (categoryModel.title == "Women") Navigator.pushNamed(context, WomenCategory.routeName);
+    if (categoryModel.title == "Shoes") Navigator.pushNamed(context, ShoesCategory.routeName);
+    if (categoryModel.title == "Jewelry") Navigator.pushNamed(context, JewelryCategory.routeName);
 
     setState(() {});
   }

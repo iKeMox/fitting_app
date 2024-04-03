@@ -16,7 +16,7 @@ class _SettingsViewState extends State<SettingsView> {
     var mediaQuery = MediaQuery.of(context).size;
     List<String> themeList = ["Light", "Dark"];
     return Padding(
-      padding: EdgeInsets.only(top: 70, right: 20, left: 20),
+      padding: const EdgeInsets.only(top: 70, right: 20, left: 20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
@@ -53,7 +53,7 @@ class _SettingsViewState extends State<SettingsView> {
                     color: Colors.grey.shade800,
                     size: 30,
                   ),
-                  SizedBox(width: 10),
+                  const SizedBox(width: 10),
                   Text(
                     "Edit profile",
                     style: theme.textTheme.bodySmall
@@ -92,7 +92,7 @@ class _SettingsViewState extends State<SettingsView> {
                         color: Colors.grey.shade800,
                         size: 30,
                       ),
-                      SizedBox(width: 10),
+                      const SizedBox(width: 10),
                       Text(
                         "Help & Support",
                         style: theme.textTheme.bodySmall?.copyWith(
@@ -110,7 +110,7 @@ class _SettingsViewState extends State<SettingsView> {
                         color: Colors.grey.shade800,
                         size: 30,
                       ),
-                      SizedBox(width: 10),
+                      const SizedBox(width: 10),
                       Text(
                         "About",
                         style: theme.textTheme.bodySmall?.copyWith(
@@ -186,7 +186,7 @@ class _SettingsViewState extends State<SettingsView> {
                         color: Colors.grey.shade800,
                         size: 30,
                       ),
-                      SizedBox(width: 10),
+                      const SizedBox(width: 10),
                       Text(
                         "Report a problem",
                         style: theme.textTheme.bodySmall?.copyWith(
@@ -199,12 +199,12 @@ class _SettingsViewState extends State<SettingsView> {
                   onPressed: () {},
                   child: Row(
                     children: [
-                      Icon(
+                      const Icon(
                         Iconsax.logout,
                         color: Colors.red,
                         size: 30,
                       ),
-                      SizedBox(width: 10),
+                      const SizedBox(width: 10),
                       Text(
                         "Log out",
                         style: theme.textTheme.bodySmall
